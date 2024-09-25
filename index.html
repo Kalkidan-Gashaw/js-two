@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+     body{
+        margin: 30px;
+        color: #0077b6;
+     }
+      button {
+        display: inline;
+        background-color: #0077b6;
+        border: none;
+       padding: 10px;
+       border-radius: 5px;
+       margin-left: 20px;
+       color: white;
+       font-weight: bold;
+        
+      }
+      button:hover{
+        background-color: lightblue ;
+      }
+      input[type='text']{
+        width: 150px;
+        border-color: #0077b6;
+        height: 30px;
+       font-size: 14px;
+      }
+      img {
+        display: none;
+      }p{
+        font-size: 18px;
+      }
+    </style>
+    <script>
+      function turnOffLight() {
+        document.getElementById("darkImage").style.display = "inline";
+        document.getElementById("brightImage").style.display = "none";
+      }
+
+      function turnOnLight() {
+        document.getElementById("darkImage").style.display = "none";
+        document.getElementById("brightImage").style.display = "inline";
+      }
+
+      function getCurrentTime() {
+        const now = new Date();
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+        let seconds = now.getSeconds();
+        let amOrPm = hours >= 12 ? "PM" : "AM";
+
+        hours = hours % 12 || 12;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        const currentTime =
+          hours + ":" + minutes + ":" + seconds + " " + amOrPm;
+        document.getElementById("da").value = currentTime;
+      }
+      function removec() {
+        const text = document.getElementById("txt").value;
+        const modified = text.slice(1, -1);
+        document.getElementById("result").innerHTML = 'Modified Text: ' + modified;
+      }
+    </script>
+  </head>
+  <body>
+    <h2>Switch</h2>
+    <button onclick="turnOffLight()">Turn Off Light</button>
+    <img id="darkImage" src="lightoff.png" alt="Dark Image" />
+    <img id="brightImage" src="lighton.png" alt="Bright Image" />
+
+    <button onclick="turnOnLight()">Turn On Light</button>
+
+    <h2>Current time</h2>
+    <button type="button" onclick="getCurrentTime()">Time</button>
+    <input type="text" id="da" />
+    <h2>Character remover</h2>
+    <input type="text" placeholder="Enter the text" id="txt" />
+    <button type="button" onclick="removec()">Remove</button>
+    <p id="result"></p>
+  </body>
+</html>
